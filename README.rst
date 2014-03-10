@@ -8,8 +8,6 @@ provides a lazily evaluated sequence that can be used like an immutable list.
 You can think of it as a Pythonic version of Clojure's
 `Seq <http://clojure.org/sequences>`_.
 
-.. _Seq: 
-
 ``LazySeq`` implements Python’s sequence interface, and thus has the methods
 ``__getitem__``, ``__len__``, ``__contains__``, ``__iter__``, ``__reversed__``,
 ``index``, and ``count``.
