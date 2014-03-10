@@ -27,7 +27,7 @@ comprehensions, of course) in LazySeq:
 .. code:: python
 
     >>> from lazyseq import LazySeq
-    >>> seq = LazySeq(x ** 2 for x in xrange(5))
+    >>> seq = LazySeq(x ** 2 for x in range(5))
     >>> seq
     LazySeq([...])
     >>> seq[:3]
@@ -39,6 +39,6 @@ comprehensions, of course) in LazySeq:
     >>> seq
     LazySeq([0, 1, 4, 9, 16])
 
-.. |travis| image:: https://travis-ci.org/shoyer/lazyseq
+.. |travis| image:: https://travis-ci.org/shoyer/lazyseq.png
     :target: https://travis-ci.org/shoyer/lazyseq
     :alt: travis-ci build status
