@@ -58,6 +58,7 @@ class LazySeq(Sequence):
         self._exhausted = True
 
     def __iter__(self):
+        # for python 3.3, this could use ``yield from``
         for item in self._cached_items:
             yield item
         for item in self._iter_uncached():
@@ -68,13 +69,11 @@ class LazySeq(Sequence):
         all items, if n is None) are cached internally
         """
         if n is None:
-            items = self._iter_uncached()
-        elif n > len(self._cached_items):
-            items = islice(self._iter_uncached(), n - len(self._cached_items))
+            stop = None
         else:
-            items = []
+            stop = max(n - len(self._cached_items), 0)
 
-        for item in items:
+        for item in islice(self._iter_uncached(), stop):
             pass
 
     def __len__(self):
