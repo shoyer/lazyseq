@@ -1,10 +1,14 @@
 lazyseq: a lazily evaluated sequence type for Python
 ----------------------------------------------------
 
+|travis|
+
 **lazyseq** is a simple library implementing a single class, ``LazySeq``, which
 provides a lazily evaluated sequence that can be used like an immutable list.
 You can think of it as a Pythonic version of Clojure's
-(Seq)[http://clojure.org/sequences].
+`Seq <http://clojure.org/sequences>`_.
+
+.. _Seq: 
 
 ``LazySeq`` implements Python’s sequence interface, and thus has the methods
 ``__getitem__``, ``__len__``, ``__contains__``, ``__iter__``, ``__reversed__``,
@@ -34,3 +38,7 @@ comprehensions, of course) in LazySeq:
     [0, 1, 4, 9, 16]
     >>> seq
     LazySeq([0, 1, 4, 9, 16])
+
+.. |travis| image:: https://travis-ci.org/shoyer/lazyseq
+    :target: https://travis-ci.org/shoyer/lazyseq
+    :alt: travis-ci build status
