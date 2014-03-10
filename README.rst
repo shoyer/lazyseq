@@ -6,8 +6,10 @@ lazyseq: a lazily evaluated sequence type for Python
 **lazyseq** is a simple library implementing a single class, ``LazySeq``, which
 provides a lazily evaluated sequence that can be used like an immutable list.
 You can think of it as a Pythonic version of Clojure's
-`Seq <http://clojure.org/sequences>`_. It's sort of a cross between a generator
-and a list.
+`Seq <http://clojure.org/sequences>`_. The main use of ``LazySeq`` is for
+wrapping generators or
+`generator expressions <http://legacy.python.org/dev/peps/pep-0289/>`_ to make
+them persistent, but still lazy.
 
 ``LazySeq`` implements Python’s sequence interface, and thus has the methods
 ``__getitem__``, ``__len__``, ``__contains__``, ``__iter__``, ``__reversed__``,
@@ -20,8 +22,7 @@ evaluated elements are cached on the ``LazySeq`` so it can be iterated over
 again. Note that some operations like ``len(seq)`` will by necessity iterate
 over (and thus cache) the entire iterable.
 
-To use LazySeq, just wrap any Python iterable (including generator
-comprehensions, of course) in LazySeq:
+To use LazySeq, just call ``LazySeq`` on any Python iterable:
 
 .. code:: python
 
