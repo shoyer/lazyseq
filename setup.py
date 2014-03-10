@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name="lazyseq",
-    version="0.1.0",
+    version="0.1.0-dev",
     author="Stephan Hoyer",
     description="a lazily evaluated sequence type for Python",
     license="MIT",

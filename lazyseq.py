@@ -1,14 +1,8 @@
 from collections import Sequence
-try:
-    # Python 2
-    from itertools import izip as zip
-    range = xrange
-except ImportError:
-    # Python 3
-    pass
+from itertools import islice
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.0-dev'
 
 
 class LazySeq(Sequence):
@@ -25,7 +19,7 @@ class LazySeq(Sequence):
     again. Note that some operations like `len(seq)` will by necessity iterate
     over (and thus cache) the entire iterable.
 
-    To use LazySeq, just wrap any Python iterable (including a generator
+    To use LazySeq, just wrap any Python iterable (including generator
     comprehensions, of course) in LazySeq:
 
     >>> from lazyseq import LazySeq
@@ -57,23 +51,30 @@ class LazySeq(Sequence):
             self.cache()
         return self._cached_items[key]
 
-    def __iter__(self):
-        for item in self._cached_items:
-            yield item
+    def _iter_uncached(self):
         for item in self._iterator:
             self._cached_items.append(item)
             yield item
         self._exhausted = True
+
+    def __iter__(self):
+        for item in self._cached_items:
+            yield item
+        for item in self._iter_uncached():
+            yield item
 
     def cache(self, n=None):
         """Insure that all items up through the nth element in the sequence (or
         all items, if n is None) are cached internally
         """
         if n is None:
-            items = self
+            items = self._iter_uncached()
+        elif n > len(self._cached_items):
+            items = islice(self._iter_uncached(), n - len(self._cached_items))
         else:
-            items = zip(range(n), self)
-        for _ in items:
+            items = []
+
+        for item in items:
             pass
 
     def __len__(self):
