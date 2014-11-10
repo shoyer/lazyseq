@@ -38,6 +38,12 @@ To use LazySeq, just call ``LazySeq`` on any Python iterable:
     [0, 1, 4, 9, 16]
     >>> seq
     LazySeq([0, 1, 4, 9, 16])
+    
+**lazyseq** is available on pypi::
+
+    pip install lazyseq
+    
+It uses a combined code base for Python 2 and 3 and has no external dependencies.
 
 .. |travis| image:: https://travis-ci.org/shoyer/lazyseq.png
     :target: https://travis-ci.org/shoyer/lazyseq
